@@ -20,7 +20,7 @@ jobs:
     needs: lister-runner
     runs-on: ubuntu-latest
     steps:
-      - name: Login to Docker Hub
+      - name: Login à Docker Hub
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
