@@ -1,0 +1,31 @@
+name: Exercice 3
+on:
+  push:
+    branches:
+      - main
+jobs:
+  lister-runner:
+    name: lister-runner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step-1 checkout
+        uses:  actions/checkout@v4
+      - name: Step-2 lister le runner
+        run: |
+          ls -ltr
+          hostmname
+  docker-build-publish:
+    name: docker-build-publish
+    needs: lister-runner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker Hub
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+        run: echo "${DOCKER_HUB_TOKEN}" | docker login -u "${DOCKER_HUB_USERNAME}" --password-stdin
+      - name: Build image Docker
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/a18_linakhounvongsa_final_1290:latest .
+      - name: Push l'image Docker à Docker Hub
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/a18_linakhounvongsa_final_1290:latest
+      
