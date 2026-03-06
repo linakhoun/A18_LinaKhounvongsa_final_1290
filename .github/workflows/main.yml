@@ -20,6 +20,8 @@ jobs:
     needs: lister-runner
     runs-on: ubuntu-latest
     steps:
+      - name: Step-3 checkout pour 2ème job
+        uses: actions/checkout@v4
       - name: Login à Docker Hub
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
